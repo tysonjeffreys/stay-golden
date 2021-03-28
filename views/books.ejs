@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('layouts/header'); -%>
+
+<body>
+
+  <%- include('layouts/nav'); -%>
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('img/home-bg.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Clean Blog</h1>
+            <span class="subheading">A Blog Theme by Start Bootstrap</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  
+  <!--Find a specific BlogPost -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+          <form action="/posts/find" method="GET">
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Find</label>
+              <input type="text" class="form-control" placeholder="Search for..." id="title" name="title">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+        </div>
+          
+          <br>
+          <div id="success"></div>
+          <button type="submit" class="btn btn-primary" id="sendMessageButton">Find</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <% for( let i = 0; i < books.length; i++ ) { %>
+        <div class="post-preview">
+          <a href="/book/<%= books[i]._id %>">
+            <h2 class="post-title">
+            <%= books[i].author %>  
+            </h2>
+            <h3 class="post-subtitle">
+            <%= books[i].title %> 
+            </h3>
+          </a>
+          <p class="post-meta">Posted by
+            <a href="#"><%= books[i].username %></a>
+            on <%= books[i].datePosted.toDateString() %></p>
+        </div>
+        <hr>
+        <% } %>
+        <!-- Pager -->
+        <div class="clearfix">
+          <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <%- include('layouts/footer'); -%>
+  <%- include('layouts/script.ejs'); -%>  
+
+</body>
+
+</html>
