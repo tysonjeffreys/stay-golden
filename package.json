@@ -34,6 +34,7 @@
     "bootstrap": "4.5.3",
     "connect-flash": "^0.1.1",
     "ejs": "^3.1.6",
+    "exif": "^0.6.0",
     "express": "^4.17.1",
     "express-fileupload": "^1.2.1",
     "express-session": "^1.17.1",
@@ -43,7 +44,7 @@
     "save": "^2.4.0"
   },
   "devDependencies": {
-    "browser-sync": "2.26.13",
+    "browser-sync": "^2.26.14",
     "del": "6.0.0",
     "gulp": "4.0.2",
     "gulp-autoprefixer": "7.0.1",

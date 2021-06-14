@@ -5,10 +5,9 @@
 
 <body>
 
-<%- include('layouts/nav'); -%>
 
   <!-- Page Header
-  <header class="masthead" )">
+  <header class="masthead">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
@@ -51,58 +50,64 @@
 -->
 
 
-  <div class="container">
-    <div class="row">
-      <div class="col-8 border">
-        <% for (var i = 0;i < blogposts.length;i++)  { %> 
-        <div class="post-preview border">
-          <img src="<%= blogposts[i].image %>">
-          <!--<a href="/post/<%= blogposts[i]._id %>">
-            <h2 class="post-title">
-              <%= blogposts[i].title %>
-            </h2>
-            <h3 class="post-subtitle">
-              
-              <%= blogposts[i].body %>
-            </h3>
-          </a>
-          <p class="post-meta">Posted by
-            <a href="#"><%= blogposts[i].userid.username %></a>
-            on <%= blogposts[i].datePosted.toDateString() %></p>
-          -->
-        </div>
-        
-        <% } %>
-      </div>
-        <div class="col-4 border">
-          <% for (var i = 0;i < blogposts.length;i++)  { %> 
-          <div class="post-preview">
-            <img src="<%= blogposts[i].image %>">
-            <!--<a href="/post/<%= blogposts[i]._id %>">
-              <h2 class="post-title">
-                <%= blogposts[i].title %>
-              </h2>
-              <h3 class="post-subtitle">
-                
-                <%= blogposts[i].body %>
-              </h3>
-            </a>
-            <p class="post-meta">Posted by
-              <a href="#"><%= blogposts[i].userid.username %></a>
-              on <%= blogposts[i].datePosted.toDateString() %></p>
-            -->
+  <div id="page-wrapper">
+    
+    <div class="container">
+          <div class="row-1">
+            <div class="logo-column"></div>
+          
+            <div class="logo">STAY GOLDEN</div>
+            
+            
+            
           </div>
-          <% } %>
-        </div>
+          <% blogposts.reverse().forEach(posts =>  { %> 
+          <div class="row-2">
+            
+            <div class="left-column">
+              <div class="bicycle-map">
+              <img src="img/bicycle-pin-svgrepo-com.svg" />
+              </div>
+              <div class="title-column"> 
+                <a href="/post/<%= posts._id %>">
+                <p class="title">
+                <%= posts.title %>
+                </p>
+        
+                <h3 class="post-subtitle">
+              
+                
+                <p class="date"><%= posts.datePosted.toDateString() %></p>
+                </h3>
+                </a>
+              </div>
+            </div>
+           
+            
+            <!-- <div class="column"> -->
+              <div id="hero">
+                <img src="<%= posts.image %>">
+              </div>
+            <!-- </div> -->
+          
+          </div>
+
+        
+          <% }) %>
+      
+      
+        
         <!-- Pager 
         <div class="clearfix">
           <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
 
         -->
-        </div>
-      </div>
     </div>
   </div>
+  <a class="nav-link" href="/posts/new">New Post</a>
+  <a class="nav-link" href="/auth/login">Login</a>
+  <a class="nav-link" href="/auth/register">New User</a>
+  <a class="nav-link" href="/auth/logOut">Log Out</a>
 
   
 
