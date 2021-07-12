@@ -20,7 +20,7 @@
     "email": "feedback@startbootstrap.com"
   },
   "license": "MIT",
-  "engines" :{
+  "engines": {
     "node": "12.16.3"
   },
   "author": "Tyson Jeffreys",
