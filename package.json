@@ -3,7 +3,7 @@
   "name": "stay-golden",
   "version": "1.0.0",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node index.js"
   },
   "description": "Clean Blog is a Medium inspired blog theme for Bootstrap.",
   "keywords": [
