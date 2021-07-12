@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
+
 const BlogPostSchema = new Schema({
     title: String,
     body: String,
@@ -11,9 +12,13 @@ const BlogPostSchema = new Schema({
     },
     datePosted: { /* can declare property type with an object like this because we need 'default */
         type : Date,
-        default: new Date()
+        //default: new Date()
     },
-    image: String
+    image: String,
+    longitude: String,
+    latitude: String,
+    city: String,
+    state: String
 });
 
 const BlogPost = mongoose.model('BlogPost',BlogPostSchema);

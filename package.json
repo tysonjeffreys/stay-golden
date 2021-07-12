@@ -20,7 +20,10 @@
     "email": "feedback@startbootstrap.com"
   },
   "license": "MIT",
-  "author": "Start Bootstrap",
+  "engines" :{
+    "node": "12.16.3"
+  },
+  "author": "Tyson Jeffreys",
   "contributors": [
     "David Miller (https://davidmiller.io/)"
   ],
@@ -41,7 +44,9 @@
     "jquery": "3.5.1",
     "mongoose": "^5.12.2",
     "mongoose-unique-validator": "^2.0.3",
-    "save": "^2.4.0"
+    "node-geocoder": "^3.27.0",
+    "save": "^2.4.0",
+    "us-state-codes": "^1.1.2"
   },
   "devDependencies": {
     "browser-sync": "^2.26.14",

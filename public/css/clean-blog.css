@@ -197,7 +197,7 @@
                 //flex-direction: column;
                 
                 //flex-basis: 250px;
-                flex: 0 0 200px;
+                flex: 0 0 200\px;
                 //height: 100%;
                 border-style:dashed;
                 //self-align: flex-end;
@@ -265,7 +265,7 @@
                 align-items: flex-end;
                 
                 justify-content: flex-end;
-                flex: 0 0 158px;
+                flex: 0 0 150px;
                 //white-space: nowrap;
                 text-align: right;
                 height: 33%;

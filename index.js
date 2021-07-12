@@ -34,9 +34,15 @@ const getSingleBookController = require('./controllers/getSingleBook')
 
 
 mongoose.connect('mongodb://localhost/my_database', {useNewURLParser:true})
+//mongoose.connect('mongodb+srv://tmoney:FreedomTour@cluster0.87gz6.mongodb.net/my_database', {useNewURLParser:true})
 
-app.listen(4000, () => {
-    console.log('App listening in port 4000')
+let port = process.env.PORT;
+if (port == null || port == "") {
+    port = 4000;
+}
+
+app.listen(port, () => {
+    console.log('App listening...')
     
 })
 

@@ -48,7 +48,10 @@
     </div>
   </div>
 -->
-
+<a class="nav-link" href="/posts/new">New Post</a>
+<a class="nav-link" href="/auth/login">Login</a>
+<a class="nav-link" href="/auth/register">New User</a>
+<a class="nav-link" href="/auth/logOut">Log Out</a>
 
   <div id="page-wrapper">
     
@@ -71,7 +74,7 @@
               <div class="title-column"> 
                 <a href="/post/<%= posts._id %>">
                 <p class="title">
-                <%= posts.title %>
+                <%= posts.city + ", " + posts.state %>
                 </p>
         
                 <h3 class="post-subtitle">
@@ -104,10 +107,7 @@
         -->
     </div>
   </div>
-  <a class="nav-link" href="/posts/new">New Post</a>
-  <a class="nav-link" href="/auth/login">Login</a>
-  <a class="nav-link" href="/auth/register">New User</a>
-  <a class="nav-link" href="/auth/logOut">Log Out</a>
+ 
 
   
 
