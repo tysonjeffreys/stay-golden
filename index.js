@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express')
 const app = new express()
 const path = require('path')
@@ -36,12 +37,13 @@ const getSingleBookController = require('./controllers/getSingleBook')
 mongoose.connect('mongodb://localhost/my_database', {useNewURLParser:true})
 //mongoose.connect('mongodb+srv://tmoney:FreedomTour@cluster0.87gz6.mongodb.net/my_database', {useNewURLParser:true})
 
-let port = process.env.PORT;
+let port = 4000;
+//let port = process.env.PORT;
 if (port == null || port == "") {
     port = 4000;
 }
 
-app.listen(4000, () => {
+app.listen(port, () => {
     console.log('App listening...')
     
 })

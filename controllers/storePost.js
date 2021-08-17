@@ -13,7 +13,7 @@ module.exports = (req,res) => {
         let imagePath = path.resolve(__dirname,'..', 'public/img', image.name);
         console.log(imagePath)
         let ExifImage = require('exif').ExifImage;
-        let latDD = 0;
+        //let latDD = 0;
         
         try {
             new ExifImage({ image : imagePath }, async (error, exifData) => {
@@ -31,15 +31,15 @@ module.exports = (req,res) => {
                         let latDegrees = exifData.gps.GPSLatitude[0]
                         let latMin = exifData.gps.GPSLatitude[1]/60
                         let latSec = exifData.gps.GPSLatitude[2]/3600
-                        //let latDD = latDegrees + latMin + latSec
-                        
-                        let latDD = 47.700354
+                        let latDD = latDegrees + latMin + latSec
+                        console.log('This is LATDD: ' + latDD)
+                        //let latDD =  47.700354
                        
                         let lonDegrees = exifData.gps.GPSLongitude[0]
                         let lonMin = exifData.gps.GPSLongitude[1]/60
                         let lonSec = exifData.gps.GPSLongitude[2]/3600
-                        //let lonDD = lonDegrees + lonMin + lonSec
-                        let lonDD = 124.413381
+                        let lonDD = lonDegrees + lonMin + lonSec
+                        //let lonDD = 124.413381
                         
                         
                         if (exifData.gps.GPSLatitudeRef == 'S') {
@@ -76,7 +76,7 @@ module.exports = (req,res) => {
                             if (response[0].city == undefined) {
                                 let addressArray = response[0].formattedAddress.split(",")
                                 let city = addressArray.filter(s => s.includes('County'));
-                                console.log(city)  
+                                console.log('This is CITY: ' + city)  
                                 BlogPost.create({
                                     ...req.body,
                                     image: '/img/' + image.name,
@@ -89,6 +89,18 @@ module.exports = (req,res) => {
             
                                 })
                             } else city = response[0].city
+                            BlogPost.create({
+                                ...req.body,
+                                image: '/img/' + image.name,
+                                userid: req.session.userId,
+                                city: city,
+                                state: state,
+                                latitude: latDD,
+                                longitude: lonDD,
+                                datePosted: new Date(year,month-1,day)
+        
+                            })
+                            console.log('This is city defined: ' + city)
                             
                         })
                         function geoDBwrite(callback) {
