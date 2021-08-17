@@ -18,7 +18,9 @@ const BlogPostSchema = new Schema({
     longitude: String,
     latitude: String,
     city: String,
-    state: String
+    state: String,
+    fileLink: { type: String },
+    s3_key: { type: String }
 });
 
 const BlogPost = mongoose.model('BlogPost',BlogPostSchema);
