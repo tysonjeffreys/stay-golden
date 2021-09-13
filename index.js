@@ -5,7 +5,7 @@ const path = require('path')
 const ejs = require('ejs')
 const mongoose = require('mongoose')
 //const bodyParser = require('body-parser')
-const fileUpload = require('express-fileUpload')
+//const fileUpload = require('express-fileUpload')
 const aws = require('aws-sdk');
 
 
