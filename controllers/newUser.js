@@ -1,5 +1,5 @@
 const { model } = require("../models/BlogPost");
-//const flash = require('connect-flash')
+const flash = require('connect-flash')
 
 module.exports = (req,res) => {
     var username = ""
