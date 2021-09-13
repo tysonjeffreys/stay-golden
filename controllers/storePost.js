@@ -5,6 +5,8 @@ var states = require('us-state-codes');
 
 
 module.exports = (req,res) => {
+    
+    
     let image = req.files.image;
     image.mv(path.resolve(__dirname,'..', 'public/img', image.name),    
         (error) => { 
@@ -92,7 +94,7 @@ module.exports = (req,res) => {
                             BlogPost.create({
                                 ...req.body,
                                 image: '/img/' + image.name,
-                                userid: req.session.userId,
+                                //userid: req.session.userId,
                                 city: city,
                                 state: state,
                                 latitude: latDD,

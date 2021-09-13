@@ -4,8 +4,8 @@ const app = new express()
 const path = require('path')
 const ejs = require('ejs')
 const mongoose = require('mongoose')
-//const bodyParser = require('body-parser')
-//const fileUpload = require('express-fileUpload')
+const bodyParser = require('body-parser')
+const fileUpload = require('express-fileUpload')
 const aws = require('aws-sdk');
 
 
@@ -35,9 +35,9 @@ const getBooksController = require('./controllers/getBooks')
 const getSingleBookController = require('./controllers/getSingleBook')
 
 
-//mongoose.connect('mongodb://localhost/my_database', {useNewURLParser:true})
+mongoose.connect('mongodb://localhost/my_database', {useNewURLParser:true})
 
-mongoose.connect('mongodb+srv://tmoney:FreedomTour@cluster0.87gz6.mongodb.net/my_database', {useNewURLParser:true})
+//mongoose.connect('mongodb+srv://tmoney:FreedomTour@cluster0.87gz6.mongodb.net/my_database', {useNewURLParser:true})
 /*
 let port = 4000;
 //let port = process.env.PORT;
@@ -75,27 +75,27 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
-//app.use(fileUpload())
+app.use(fileUpload())
 
 
-app.use('/posts/store', validateMiddleware)
+//app.use('/posts/store', validateMiddleware)
 
-app.use(expressSession({
-    secret: 'keyboard cat'}))
+//app.use(expressSession({
+//    secret: 'keyboard cat'}))
 
-global.loggedIn = null;
+//global.loggedIn = null;
 
-app.use("*", (req,res,next) => {
-    loggedIn = req.session.userId;
-    next()
-});
+//app.use("*", (req,res,next) => {
+//    loggedIn = req.session.userId;
+//    next()
+//});
 
 app.use(flash());
 
 app.get('/', homeController)
 app.get('/post/:id', getPostController)
 app.get('/posts/new', newPostController)
-app.post('/posts/store', authMiddleware, storePostController)
+app.post('/posts/store', storePostController)
 app.get('/posts/:find', findPostController)
 app.get('/auth/register', redirectIfAuthenticatedMiddleware, newUserController)
 app.post('/users/register', redirectIfAuthenticatedMiddleware, storeUserController)

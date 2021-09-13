@@ -106,18 +106,9 @@
   */
 </script>
 
-<script type="module">
-  import exifr from '../node_modules/exifr/dist/lite.esm.js'
-  
-  document.querySelector('file-input').addEventListener('change', async e => {
-    let file = e.target.files[0]
-    let exifData = await exif.parse(file)
-    console.log('exifData', exifData)
-  })
 
-  
-</script>
-  <%- include('layouts/script.ejs'); -%>
+ 
+<%- include('layouts/script.ejs'); -%>
 
 
 
