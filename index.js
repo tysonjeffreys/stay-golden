@@ -6,6 +6,7 @@ const ejs = require('ejs')
 const mongoose = require('mongoose')
 //const bodyParser = require('body-parser')
 const fileUpload = require('express-fileUpload')
+const aws = require('aws-sdk');
 
 
 
@@ -36,17 +37,24 @@ const getSingleBookController = require('./controllers/getSingleBook')
 
 mongoose.connect('mongodb://localhost/my_database', {useNewURLParser:true})
 //mongoose.connect('mongodb+srv://tmoney:FreedomTour@cluster0.87gz6.mongodb.net/my_database', {useNewURLParser:true})
-
+/*
 let port = 4000;
 //let port = process.env.PORT;
 if (port == null || port == "") {
     port = 4000;
 }
 
+
 app.listen(port, () => {
     console.log('App listening...')
     
 })
+*/
+
+app.listen(process.env.PORT);
+
+const S3_BUCKET = process.env.AWS_BUCKET_NAME;
+aws.config.region = 'us-east-1';
 
 console.log('Current Directory:', __dirname);
 path1 = path.resolve('users/admin', 'readme.md')
@@ -114,6 +122,34 @@ app.get('/contact', (req, res) => {
     //res.sendFile(path.resolve(__dirname, 'pages/contact.html'))
     res.render('contact')
 })
+
+app.get('/sign-s3', (req, res) => {
+    const s3 = new aws.S3();
+    const fileName = req.query['file-name'];
+    console.log('This is the fileName: ' + fileName);
+    const fileType = req.query['file-type'];
+    const s3Params = {
+        Bucket: S3_BUCKET,
+        Key: fileName,
+        Expires: 120,
+        ContentType: fileType,
+        ACL: 'public-read'
+    };
+
+    s3.getSignedUrl('putObject', s3Params, (err, data) => {
+        if(err){
+            console.log(err);
+            return res.end();
+        }
+        const returnData = {
+            signedRequest: data,
+            url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
+        };
+        console.log(returnData)
+        res.write(JSON.stringify(returnData));
+        res.end();
+    });
+});
 app.use((req,res) => res.render('notfound'))
 
 
