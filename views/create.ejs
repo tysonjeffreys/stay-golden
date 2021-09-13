@@ -106,12 +106,14 @@
   */
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/exifr/dist/lite.legacy.umd.js"></script>
-<script>
+<script type="module">
+  import exifr from './node_modules/exifr/dist/lite.esm.js'
   
-  let img = document.querySelector('file-input')
-  window.exifr.parse(img).then(exif => console.log('Exposure:', exif.ExposureTime))
-  
+  document.querySelector('file-input').addEventListener('change', async e => {
+    let file = e.target.files[0]
+    let exifData = await exif.parse(file)
+    console.log('exifData', exifData)
+  })
 
   
 </script>
