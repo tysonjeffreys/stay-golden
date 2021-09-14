@@ -53,7 +53,8 @@
   <!-- Footer -->
 </div>
 
-<script>
+<script type="module">
+  import exifr from '/exifr/dist/lite.esm.js'
   function uploadFile(file, signedRequest, url){
     const xhr = new XMLHttpRequest();
     xhr.open('PUT', signedRequest);
@@ -70,7 +71,11 @@
     xhr.send(file);
   }
   
-  function getSignedRequest(file){
+  async function getSignedRequest(file){
+    let exifData = await exifr.parse(file)
+    let latDegrees = exifData.GPSLatitude[0]
+    console.log(latDegrees)
+    console.log('exifData', exifData)
     const xhr = new XMLHttpRequest();
     xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
     xhr.onreadystatechange = () => {
@@ -80,7 +85,7 @@
           const response = JSON.parse(xhr.responseText);
           console.log(response.url)
           console.log(response.signedRequest)
-          uploadFile(file, response.signedRequest, response.url);
+          //uploadFile(file, response.signedRequest, response.url);
         }
         else{
           alert('Could not get signed URL.');
@@ -98,16 +103,24 @@
     }
     getSignedRequest(file);
   }
-  /*
+  
   (() => {
     document.getElementById('file-input').onchange = initUpload; 
       
   })();
-  */
+  
+</script>
+<!--
+<script type="module">
+  import exifr from '/exifr/dist/lite.esm.js'
+  document.querySelector('#image').addEventListener('change', async e => {
+    let file = e.target.files[0]
+    let exifData = await exifr.parse(file)
+    console.log('exifData', exifData)
+  })
 </script>
 
-
- 
+-->
 <%- include('layouts/script.ejs'); -%>
 
 
