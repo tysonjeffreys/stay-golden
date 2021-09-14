@@ -73,6 +73,7 @@ console.log(path4)
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
+app.use(express.static(path.join(__dirname, 'node_modules')));
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(fileUpload())
