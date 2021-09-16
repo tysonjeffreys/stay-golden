@@ -79,6 +79,7 @@ app.use(express.urlencoded({extended:true}))
 app.use(fileUpload())
 
 
+
 //app.use('/posts/store', validateMiddleware)
 
 //app.use(expressSession({
@@ -152,6 +153,13 @@ app.get('/sign-s3', (req, res) => {
         res.end();
     });
 });
+
+app.post('/sendExifData', (req, res) => {
+    const exifData = (req.body);
+    console.log(exifData);
+    res.end();
+});
+
 app.use((req,res) => res.render('notfound'))
 
 
