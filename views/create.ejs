@@ -54,7 +54,7 @@
 </div>
 
 <script type="module">
-  import exifr from '/exifr/dist/lite.esm.js'
+  import exifr from '/exifr/dist/full.esm.js'
   
   function uploadFile(file, signedRequest, url){
     const xhr = new XMLHttpRequest();
@@ -74,7 +74,7 @@
   
   function getSignedRequest(file){
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}&exifData=exifData`);
+    xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
     xhr.onreadystatechange = () => {
       if(xhr.readyState === 4){
         if(xhr.status === 200){
@@ -93,27 +93,11 @@
   }
 
   async function getExifData(file){
+    console.log('this is the name of the file: ' + file.name)
     let exifData = await exifr.parse(file)
-    let latDegrees = exifData.GPSLatitude
-    console.log(latDegrees)
-    console.log('exifData', exifData)
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', '/sendExifData');
+    xhr.open('POST', `/sendExifData?file-name=${file.name}`);  
     xhr.setRequestHeader('Content-type','application/json')
-    xhr.onreadystatechange = () => {
-      if(xhr.readyState === 4){
-        if(xhr.status === 200){
-          //console.log(xhr.responseText)
-          //const response = JSON.parse(xhr.responseText);
-          //console.log(response.url)
-          //console.log(response.signedRequest)
-          //uploadFile(file, response.signedRequest, response.url);
-        }
-        else{
-          alert('Could not get signed URL.');
-        }
-      }
-    };
     xhr.send(JSON.stringify(exifData));
   }
 

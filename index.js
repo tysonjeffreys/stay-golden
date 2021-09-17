@@ -153,12 +153,14 @@ app.get('/sign-s3', (req, res) => {
         res.end();
     });
 });
-
+/*
 app.post('/sendExifData', (req, res) => {
     const exifData = (req.body);
-    console.log(exifData);
+    console.log(exifData.GPSLatitude);
     res.end();
 });
+*/
+app.post('/sendExifData', storePostController)
 
 app.use((req,res) => res.render('notfound'))
 
