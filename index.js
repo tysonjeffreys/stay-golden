@@ -162,7 +162,7 @@ app.post('/sendExifData', (req, res) => {
 */
 app.post('/sendExifData', storePostController)
 
-app.use((req,res) => res.render('notfound'))
+//app.use((req,res) => res.render('notfound'))
 
 
 //testing middleware understanding

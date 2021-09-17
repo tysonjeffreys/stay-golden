@@ -63,6 +63,7 @@
       if(xhr.readyState === 4){
         if(xhr.status === 200){
           console.log('success');
+          window.location = "/";
         }
         else{
           alert('Could not upload file.')
@@ -82,7 +83,7 @@
           const response = JSON.parse(xhr.responseText);
           console.log(response.url)
           console.log(response.signedRequest)
-          //uploadFile(file, response.signedRequest, response.url);
+          uploadFile(file, response.signedRequest, response.url);
         }
         else{
           alert('Could not get signed URL.');
@@ -98,6 +99,9 @@
     const xhr = new XMLHttpRequest();
     xhr.open('POST', `/sendExifData?file-name=${file.name}`);  
     xhr.setRequestHeader('Content-type','application/json')
+    
+      
+    
     xhr.send(JSON.stringify(exifData));
   }
 
@@ -107,8 +111,9 @@
     if(file == null){
       return alert('No file selected.');
     }
-    getSignedRequest(file);
     getExifData(file);
+    getSignedRequest(file);
+    
   }
   
   (() => {

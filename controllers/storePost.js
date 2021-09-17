@@ -31,12 +31,17 @@ module.exports = (req,res) => {
     console.log('This is latDD: ' + latDD)
     console.log('This is lonDD: ' + lonDD)
 
-    let imageDate = exifData.CreateDate
+    let imageDateFull = exifData.CreateDate
+    let imageDate = imageDateFull.substring(0,10)
     let str = imageDate.split(" ")
-    let dateStr = str[0].replace(/:/g, ",");
+    let dateStr = str[0].replace(/-/g, ",");
     let dateArray = dateStr.split(",")
-    let [year, month, day] = dateArray
-    console.log(year)
+    console.log('This is the dateArray' + dateArray)
+    //let [year, month, day] = dateArray
+    let year = '2021'
+    let month = '12'
+    let day = '13'
+    console.log('THIS IS THE day: ' + day)
     console.log(dateStr)
     
     console.log('This is the image date: ' + imageDate)
@@ -217,5 +222,6 @@ module.exports = (req,res) => {
         res.redirect('/')
     })
     */
+   res.redirect('/')
 }
 
