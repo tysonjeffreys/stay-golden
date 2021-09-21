@@ -47,6 +47,7 @@
       </div>
     </div>
   </div>
+  <div id='preview'></div>
 
   <hr>
 
@@ -74,6 +75,7 @@
   }
   
   function getSignedRequest(file){
+    console.log(file)
     const xhr = new XMLHttpRequest();
     xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
     xhr.onreadystatechange = () => {
@@ -109,21 +111,87 @@
       return alert('No file selected.');
     }
     
-    
+    /*
     const canvas = document.createElement('canvas');
     const img = document.createElement('img');
-    img.src = file;
+    img.src = window.URL.createObjectURL(file);
+    console.log('This is the createObjectURL: ' + img.src)
+    
+    //var ctx = canvas.getContext("2d");
+    
+    //ctx.drawImage(img, 0, 0);
+    
+    var MAX_WIDTH = 800;
+    var MAX_HEIGHT = 600;
+    var width = img.width;
+    var height = img.height;
+
+    if (width > height) {
+      if (width > MAX_WIDTH) {
+        height *= MAX_WIDTH / width;
+        width = MAX_WIDTH;
+      }
+    } else {
+      if (height > MAX_HEIGHT) {
+        width *= MAX_HEIGHT / height;
+        height = MAX_HEIGHT;
+      }
+    }
+    canvas.width = width;
+    canvas.height = height;
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0, width, height);
+    var dataurl = canvas.toDataURL("image/png");
+    canvas.toBlob(function(dataurl) {
+      var newImg = document.createElement('img'),
+          url = URL.createObjectURL(dataurl);
+          console.log(url)
+
+    });
+    //console.log('this is resized image: ' + dataurl)
+    //console.log(file)
+    /*
+    
     //canvas.width = img.width;
     //canvas.height = img.height;
     //canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
     //const objectURL = window.URL.createObjectURL(file);
+    */
     
-    
-    getExifData(file);
-    getSignedRequest(file);
+    //getExifData(file);
+    //getSignedRequest(file);
     
   }
   
+  let imgInput = document.getElementById('file-input');
+  imgInput.addEventListener('change', function (e) {
+      if (e.target.files) {
+          let imageFile = e.target.files[0];
+          var reader = new FileReader();
+          reader.onload = function (e) {
+              var img = document.createElement("img");
+              img.onload = function (event) {
+                  // Dynamically create a canvas element
+                  var canvas = document.createElement("canvas");
+
+                  // var canvas = document.getElementById("canvas");
+                  var ctx = canvas.getContext("2d");
+
+                  // Actual resizing
+                  ctx.drawImage(img, 0, 0, 300, 300);
+
+                  // Show resized image in preview element
+                  var dataurl = canvas.toDataURL(imageFile.type);
+                  console.log('this is the dataURL: ' + dataurl)
+                  getExifData(dataurl);
+                  document.getElementById("preview").src = dataurl;
+              }
+              img.src = e.target.result;
+          }
+          reader.readAsDataURL(imageFile);
+      }
+  });  
+
   (() => {
     document.getElementById('file-input').onchange = initUpload; 
       
