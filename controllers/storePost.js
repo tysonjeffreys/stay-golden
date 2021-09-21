@@ -3,6 +3,7 @@ const path = require('path')
 const NodeGeocoder = require('node-geocoder');
 var states = require('us-state-codes');
 
+const S3_BUCKET = process.env.AWS_BUCKET_NAME;
 
 module.exports = (req,res) => {
     const fileName = req.query['file-name'];
@@ -37,12 +38,9 @@ module.exports = (req,res) => {
     let dateStr = str[0].replace(/-/g, ",");
     let dateArray = dateStr.split(",")
     console.log('This is the dateArray' + dateArray)
-    //let [year, month, day] = dateArray
-    let year = '2021'
-    let month = '12'
-    let day = '13'
+    let [year, month, day] = dateArray
     console.log('THIS IS THE day: ' + day)
-    console.log(dateStr)
+    console.log(dateArray)
     
     console.log('This is the image date: ' + imageDate)
 
@@ -61,7 +59,7 @@ module.exports = (req,res) => {
                                 console.log('This is CITY: ' + city)  
                                 BlogPost.create({
                                     ...req.body,
-                                    image: '/img/' + fileName.name,
+                                    image: '/img/' + fileName,
                                     userid: req.session.userId,
                                     city: city[0],
                                     state: state,
@@ -73,7 +71,7 @@ module.exports = (req,res) => {
                             } else city = response[0].city
                             BlogPost.create({
                                 ...req.body,
-                                image: '/img/' + fileName.name,
+                                image: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`,
                                 //userid: req.session.userId,
                                 city: city,
                                 state: state,
