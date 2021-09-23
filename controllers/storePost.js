@@ -71,7 +71,7 @@ module.exports = (req,res) => {
                             } else city = response[0].city
                             BlogPost.create({
                                 ...req.body,
-                                image: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`,
+                                image: `https://${S3_BUCKET}.s3.amazonaws.com/800w-${fileName}`,
                                 //userid: req.session.userId,
                                 city: city,
                                 state: state,
