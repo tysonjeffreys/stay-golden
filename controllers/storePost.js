@@ -9,7 +9,7 @@ module.exports = (req,res) => {
     const fileName = req.query['file-name'];
     console.log('THIS IS THE fileName: ' + fileName);
     const exifData = (req.body);
-    console.log('This is the LATDEGREES: ' + JSON.stringify(exifData, null, 2))
+    //console.log('This is the LATDEGREES: ' + JSON.stringify(exifData, null, 2))
     //if (typeof exifData.GPSLatitude !== 'undefined') {
     let latDegrees = exifData.GPSLatitude[0]
     let latMin = exifData.GPSLatitude[1]/60
@@ -60,8 +60,8 @@ module.exports = (req,res) => {
             console.log('This is CITY: ' + city)  
             BlogPost.create({
                 ...req.body,
-                image: '/img/' + fileName,
-                userid: req.session.userId,
+                image: `https://${S3_BUCKET}.s3.amazonaws.com/800w-${fileName}`,
+                //userid: req.session.userId,
                 city: city[0],
                 state: state,
                 latitude: latDD,
