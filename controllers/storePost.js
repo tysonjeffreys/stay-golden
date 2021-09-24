@@ -10,7 +10,7 @@ module.exports = (req,res) => {
     console.log('THIS IS THE fileName: ' + fileName);
     const exifData = (req.body);
     console.log('This is the LATDEGREES: ' + JSON.stringify(exifData, null, 2))
-    if (typeof exifData.GPSLatitude !== 'undefined') {
+    //if (typeof exifData.GPSLatitude !== 'undefined') {
     let latDegrees = exifData.GPSLatitude[0]
     let latMin = exifData.GPSLatitude[1]/60
     let latSec = exifData.GPSLatitude[2]/3600
@@ -95,7 +95,8 @@ module.exports = (req,res) => {
             console.log(err);
         });
     }
- } //geoDBwrite function close
+ 
+ //} //geoDBwrite function close
 
    res.redirect('/')
 }
