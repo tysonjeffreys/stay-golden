@@ -64,7 +64,8 @@
       if(xhr.readyState === 4){
         if(xhr.status === 200){
           console.log('success');
-          window.location = "/";
+          setTimeout(function(){ window.location = "/"; }, 5000);
+          
         }
         else{
           alert('Could not upload file.')
