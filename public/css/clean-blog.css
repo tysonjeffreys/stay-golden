@@ -2,7 +2,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            border-width: 0px;
+            //border-width: 0px;
             
           }
         
@@ -46,7 +46,7 @@
                 flex-direction: column;
                 width: 800px;
                 max-width: 800px;
-                border-style: dashed;
+                //border-style: dashed;
                 justify-content: center;
                 margin: 0 auto;
             }
@@ -70,7 +70,7 @@
                 align-items:flex-start;
                 justify-content: flex-start;
                 margin: 10px 0px 0px 0px;
-                border-style: solid;
+                //border-style: solid;
             }
         }
     
@@ -94,7 +94,7 @@
                 flex: 0 0 200px;
                 //flex-basis:230px;
                 //height: 200px;
-                border-style:dashed;
+                //border-style:dashed;
                 //align-self:flex-start;
             }
         }
@@ -120,7 +120,7 @@
             .logo {
                 //display:inline-block;
                 //display: flex;
-                //border-style: solid;
+                //border-style: dashed;
                 font-size: 1.5rem;
                 color:white;
                 background-color: black;
@@ -174,7 +174,7 @@
             //flex-basis: 250px;
             //flex: 0 0 200px;
             //height: 100%;
-            border-style:dashed;
+            //border-style:dashed;
             //self-align: flex-end;
             order:2;
         }
@@ -183,7 +183,7 @@
             //width: 80%;
             width:40px;
             margin: 15px 0px 0px 20px;
-            border-style: solid;
+            //border-style: solid;
             align-self: flex-end-start;
             
 
@@ -199,7 +199,7 @@
                 //flex-basis: 250px;
                 flex: 0 0 200\px;
                 //height: 100%;
-                border-style:dashed;
+                //border-style:dashed;
                 //self-align: flex-end;
                 order:1;
             }
@@ -252,7 +252,7 @@
             //height: 33%;
             //width: 100%;
             margin: 17px 12px 0px 5px;
-            border-style: solid;
+            //border-style: solid;
             align-self: flex-start;
             
         }
@@ -271,7 +271,7 @@
                 height: 33%;
                 //width: 100%;
                 margin: 0px 0px 0px 0px;
-                border-style: solid;
+                //border-style: solid;
                 align-self: flex-end;
             }
         }
@@ -314,7 +314,7 @@
                 //height: auto;
                 margin: 0px 0px 0px 20px;
                 //flex: 0 0 auto;
-                border-style: dashed;
+                //border-style: dashed;
                 order:2;
                 width:100%
                 
@@ -384,7 +384,7 @@
             justify-content: space-around;
             padding: 0px 20px;
             background-color: white;
-            border-style: solid;
+            //border-style: solid;
         
         }
 
@@ -437,6 +437,129 @@
                 margin: 0 auto;
             }
         }
+
+        .upload-logo {
+            //display:inline-block;
+            //display: flex;
+            //border-style: dashed;
+            font-size: 1.6rem;
+            color:white;
+            background-color: black;
+            padding: 15px 7px 15px 12px;
+            //width:fit-content;
+            letter-spacing: 2px;
+            //align-self: flex-start;
+            width:100%;
+            //margin: 0px 0px 0px 20px;
+            
+        }
+        
+        @media only screen and (min-width: 768px) {
+            
+            .upload-logo {
+                //display:inline-block;
+                //display: flex;
+                //border-style: dashed;
+                font-size: 1.5rem;
+                color:white;
+                background-color: black;
+                padding: 0px 5px 0px 5px;
+                //width:fit-content;
+                letter-spacing: 1px;
+                //align-self: flex-start;
+                width:400px;
+                margin: 0px 0px 0px 0px;
+                
+            }
+        }
+
+
+
+
+
+        input[type="file"] {
+            display: none;
+        }
+        .custom-file-upload {
+            border: 1px solid #ccc;
+            display: inline-block;
+            line-height: 100px;
+            box-sizing: border-box;
+            text-align: center;
+            font-size: 2rem;;
+            cursor: pointer;
+            width: 350px;
+            height:100px;
+            margin: 10px 0px 0px 0px;
+            border-radius: 4px;
+        }
+
+
+        .upload-row-1 {
+            display: flex;
+            flex-direction: column;
+            align-items:flex-start;
+            justify-content: center;
+            margin: 0px 0px 0px 0px;
+            //border-style: solid;
+            
+        }
+
+        @media only screen and (min-width: 768px) {
+            
+            .upload-row-1 {
+                display: flex;
+                flex-direction: row;
+                align-items:flex-start;
+                justify-content: center;
+                margin: 10px 0px 0px 0px;
+                //border-style: solid;
+            }
+        }
+
+        .upload-row-2 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            //text-align: left;
+            //height: 100%;
+            //width:1500px;
+            //align-items:stretch;
+            margin: 0px 0px 20px 0px;
+            //border-style: solid;
+            
+        }
+
+        @media only screen and (min-width: 768px) {
+
+            .upload-row-2 {
+                display: flex;
+                flex-direction: row;
+                align-items: flex-end;
+                justify-content: center;
+                //text-align: left;
+                //height: 100%;
+                width:100%;
+                align-items:stretch;
+                margin: 10px 0px 0px 0px;
+                //border-style: solid;
+                
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

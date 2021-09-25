@@ -95,7 +95,7 @@ app.use(flash());
 
 app.get('/', homeController)
 app.get('/post/:id', getPostController)
-app.get('/posts/new', newPostController)
+app.get('/upload', newPostController)
 app.post('/posts/store', storePostController)
 app.get('/posts/:find', findPostController)
 app.get('/auth/register', redirectIfAuthenticatedMiddleware, newUserController)
