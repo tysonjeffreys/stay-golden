@@ -5,114 +5,32 @@
 
 <body>
 
-
-  <!-- Page Header
-  <header class="masthead">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="site-heading">
-            <h1>Clean Blog</h1>
-            <span class="subheading">A Blog Theme by Start Bootstrap</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-
--->
-
-  <!-- Main Content -->
-  
-  
-  <!--Find a specific BlogPost
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
-          <form action="/posts/find" method="GET">
-          <div class="control-group">
-            <div class="form-group floating-label-form-group controls">
-              <label>Find</label>
-              <input type="text" class="form-control" placeholder="Search for..." id="title" name="title">
-              <p class="help-block text-danger"></p>
-            </div>
-          </div>
-        </div>
-          
-          <br>
-          <div id="success"></div>
-          <button type="submit" class="btn btn-primary" id="sendMessageButton">Find</button>
-        </form>
-      </div>
-    </div>
-  </div>
--->
 <a class="nav-link" href="/upload">New Post</a>
-<a class="nav-link" href="/auth/login">Login</a>
-<a class="nav-link" href="/auth/register">New User</a>
-<a class="nav-link" href="/auth/logOut">Log Out</a>
 
   <div id="page-wrapper">
-    
     <div class="container">
           <div class="row-1">
             <div class="logo-column"></div>
-          
             <div class="logo">STAY GOLDEN</div>
-            
-            
-            
           </div>
           <% blogposts.reverse().forEach(posts =>  { %> 
           <div class="row-2">
-            
             <div class="left-column">
               <div class="bicycle-map">
-              <img src="img/bicycle-pin-svgrepo-com.svg" />
+                <img src="img/bicycle-pin-svgrepo-com.svg" />
               </div>
               <div class="title-column"> 
-                <a href="/post/<%= posts._id %>">
-                <p class="title">
-                <%= posts.city + ", " + posts.state %>
-                </p>
-        
-                <h3 class="post-subtitle">
-              
-                
+                <p class="title"><%= posts.city + ", " + posts.state %></p>
                 <p class="date"><%= posts.datePosted.toDateString() %></p>
-                </h3>
-                </a>
               </div>
             </div>
-           
-            
-            <!-- <div class="column"> -->
-              <div id="hero">
-                <img src="<%= posts.image %>">
-              </div>
-            <!-- </div> -->
-          
+            <div id="home-image">
+              <img src="<%= posts.image %>">
+            </div>
           </div>
-
-        
           <% }) %>
-      
-      
-        
-        <!-- Pager 
-        <div class="clearfix">
-          <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
-
-        -->
     </div>
   </div>
- 
-
-  
-
-  <%- //include('layouts/footer'); -%>
-  <%- include('layouts/script.ejs'); -%>  
 
 </body>
 
