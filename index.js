@@ -27,11 +27,6 @@ const authMiddleware = require('./middleware/authMiddleware')
 const redirectIfAuthenticatedMiddleware = require('./middleware/redirectIfAuthenticatedMiddleware')
 const flash = require('connect-flash');
 
-//testing knowlege of mongooge and creating Schemas/Models
-const newBookController = require('./controllers/newBook')
-const storeBooksController = require('./controllers/storeBooks')
-const getBooksController = require('./controllers/getBooks')
-const getSingleBookController = require('./controllers/getSingleBook')
 
 
 //mongoose.connect('mongodb://localhost/my_database', {useNewURLParser:true})
@@ -75,7 +70,7 @@ app.use(express.static('public'))
 app.use(express.static(path.join(__dirname, 'node_modules')));
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
-//app.use(fileUpload())
+
 
 
 
@@ -104,26 +99,12 @@ app.get('/auth/login', redirectIfAuthenticatedMiddleware, loginController)
 app.post('/users/login', redirectIfAuthenticatedMiddleware, loginUserController)
 app.get('/auth/logout', logoutController)
 
-//testing knowlege of mongoose and creating Schemas/Models
-app.get('/postBook/new', newBookController)
-app.post('/posts/book', storeBooksController)
-app.get('/books', getBooksController)
-app.get('/book/:id', getSingleBookController)
 
 
 
 
 
 
-app.get('/about', (req, res) => {
-    //res.sendFile(path.resolve(__dirname, 'pages/about.html'))
-    res.render('about')
-})
-
-app.get('/contact', (req, res) => {
-    //res.sendFile(path.resolve(__dirname, 'pages/contact.html'))
-    res.render('contact')
-})
 
 app.get('/sign-s3', (req, res) => {
     const s3 = new aws.S3();
@@ -152,76 +133,12 @@ app.get('/sign-s3', (req, res) => {
         res.end();
     });
 });
-/*
-app.post('/sendExifData', (req, res) => {
-    const exifData = (req.body);
-    console.log(exifData.GPSLatitude);
-    res.end();
-});
-*/
+
 app.post('/sendExifData', storePostController)
 
-//app.use((req,res) => res.render('notfound'))
-
-
-//testing middleware understanding
-
-/*
-app.use('/user/:id', (req,res,next) => {    adjustment 
-    console.log('Request URL', req.originalUrl)
-    next()
-},(req,res,next) => {
-    console.log('Request Type:', req.method)
-    res.send('Hello Hyperion')
-})
-
-*/
-
-function logOriginalUrl(req,res,next) {
-    console.log('Request URL:', req.originalUrl)
-    next()
-}
-
-function logRequestType(req,res,next) {
-    console.log('Request Type:', req.method)
-    next()
-}
-
-logStuff = [logOriginalUrl, logRequestType]
-app.get('/user/:id', logStuff, (req,res,next) => {
-    res.send('User Info')
-})
 
 
 
-/*
-app.get('/user/:id', (req,res,anothernext) => {
-    console.log('ID:', req.params.id)
-    anothernext()
-},
-    (req,res,next) => {
-        res.send('User Info')
-    })
-
-app.get('/user/:id', (req,res,next) => {
-    res.send(req.params.id)
-})
-*/
-
-
-/*
-app.get('/user/:id', (req, res, next) => {
-    if(req.params.id === '0') next('route')
-    else next()
-}, (req, res, next) => {
-    res.send('regular')
-})
-
-app.get('/user/:id', (req, res, next) => {
-    res.send('special')
-})
-
-*/
 
 
 
