@@ -64,7 +64,7 @@
       if(xhr.readyState === 4){
         if(xhr.status === 200){
           console.log('success');
-          setTimeout(function(){ window.location = "/"; }, 2000); // Give AWS lambda function time to resize uploaded image for loading homepage.
+          setTimeout(function(){ window.location = "/"; }, 3000); // Give AWS lambda function time to resize uploaded image for loading homepage.
           
         }
         else{
