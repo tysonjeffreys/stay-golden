@@ -99,7 +99,17 @@
     xhr.open('POST', `/sendExifData?file-name=${file.name}`);  
     xhr.setRequestHeader('Content-type','application/json')
     xhr.send(JSON.stringify(exifData));
-  }
+    xhr.onreadystatechange = () => {
+      if(xhr.readyState === 4){
+        if(xhr.status === 200){
+          getSignedRequest(file);
+        }
+      }
+        else if(xhr.status === 404){
+        alert('Image does not contain exif data.')
+        }
+      }
+    };
 
   function initUpload(){
     const files = document.getElementById('file-input').files;
@@ -109,7 +119,7 @@
     }
     
     getExifData(file);
-    getSignedRequest(file);
+    //getSignedRequest(file);
     
   }
 
