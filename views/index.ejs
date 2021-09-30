@@ -6,9 +6,10 @@
 <body>
 
 <a class="nav-link" href="/upload">New Post</a>
-
+<main>
   <div id="page-wrapper">
     <div class="container">
+     
           <div class="row-1">
             <div class="logo-column"></div>
             <div class="logo">STAY GOLDEN</div>
@@ -30,9 +31,34 @@
           </div>
           <% }) %>
     </div>
+ 
   </div>
-  <div id="test">TEST</div>
+</main>
+  
 
 </body>
+
+<script>
+  //console.log('<%= JSON.stringify(blogposts) %>');
+  let main = document.querySelector("main")
+
+  fetch('/homeData')
+  .then(function(response) {
+    return response.json()
+})
+.then(function(data) {
+  data.reverse().forEach(posts => {
+    //console.log(posts.datePosted)
+    let city = document.createElement('city')
+    city.textContent = posts.city
+    main.appendChild(city)
+  })
+  //console.log(data[0])
+})
+.catch(function(err) {
+  console.log('Something went wrong!', err)
+});
+
+</script>
 
 </html>

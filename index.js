@@ -11,6 +11,7 @@ const aws = require('aws-sdk');
 
 //controllers
 const homeController = require('./controllers/home')
+const homeDataController = require('./controllers/homeData')
 const newPostController = require('./controllers/newPost')
 const storePostController = require('./controllers/storePost')
 const getPostController = require('./controllers/getPost')
@@ -89,6 +90,7 @@ app.use(express.urlencoded({extended:true}))
 app.use(flash());
 
 app.get('/', homeController)
+app.get('/homeData',homeDataController)
 app.get('/post/:id', getPostController)
 app.get('/upload', newPostController)
 app.post('/posts/store', storePostController)
