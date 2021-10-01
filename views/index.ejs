@@ -8,14 +8,14 @@
 <a class="nav-link" href="/upload">New Post</a>
 <main>
   <div id="page-wrapper">
-    <div class="container">
+    <div id="container" class="container">
      
-          <div class="row-1">
-            <div class="logo-column"></div>
-            <div class="logo">STAY GOLDEN</div>
+          <div class="row-1" id="row-1">
+            <div class="logo-column" id="logo-column"></div>
+            <div class="logo" id="logo">STAY GOLDEN</div>
           </div>
           <% blogposts.reverse().forEach(posts =>  { %> 
-          <div class="row-2">
+          <div class="row-2" id="row-2">
             <div class="left-column">
               <div class="bicycle-map">
                 <img src="img/bicycle-pin-svgrepo-com.svg" />
@@ -46,14 +46,29 @@
   .then(function(response) {
     return response.json()
 })
-.then(function(data) {
-  data.reverse().forEach(posts => {
-    //console.log(posts.datePosted)
-    let city = document.createElement('city')
-    city.textContent = posts.city
-    main.appendChild(city)
+.then(function(imageposts) {
+  
+  
+  console.log(imageposts)
+  let allData = imageposts.map(ele => ele.totalData.map(imageArray => imageArray))
+  console.log(allData[0])
+  
+  allData.forEach(response => {
+    response.forEach(eachImage => {
+      console.log(eachImage)
+    
+      let city = document.createElement('city')
+      city.textContent = eachImage.city
+      main.appendChild(city)
+
+    })
+
   })
-  //console.log(data[0])
+    
+  
+  let count = imageposts[0].totalCount[0].count
+  console.log(count)
+  //console.log(data[0].totalData)
 })
 .catch(function(err) {
   console.log('Something went wrong!', err)
