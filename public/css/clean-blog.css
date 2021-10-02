@@ -175,7 +175,7 @@ a {
     }
 }
 
-#home-image {
+#homeImage {
     align-items: flex-start;
     justify-content: flex-start;
     margin: 0px 0px 0px 0px;
@@ -184,7 +184,7 @@ a {
 
 
 @media only screen and (min-width: 768px) {
-    #home-image {
+    #homeImage {
         margin: 0px 0px 0px 20px;
         order:2;
         width:100%
@@ -192,14 +192,14 @@ a {
     }
 }
 
-#home-image > img {
+#homeImage > img {
     width:100%;
     margin: 10px 0px 0px 0px;
     
 }
 
     @media only screen and (min-width: 768px) {
-#home-image > img {
+#homeImage > img {
     max-width:600px;
     margin: 0px 0px 0px 0px;
     

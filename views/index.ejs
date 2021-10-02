@@ -7,26 +7,25 @@
 
 <a class="nav-link" href="/upload">New Post</a>
 <main>
-  <div id="page-wrapper">
+  <div id="pageWrapper">
     <div id="container" class="container">
-     
-          <div class="row-1" id="row-1">
-            <div class="logo-column" id="logo-column"></div>
+          <div class="row-1" id="row1">
+            <div class="logo-column" id="logoColumn"></div>
             <div class="logo" id="logo">STAY GOLDEN</div>
           </div>
           <% blogposts.reverse().forEach(posts =>  { %> 
-          <div class="row-2" id="row-2">
-            <div class="left-column">
-              <div class="bicycle-map">
+          <div class="row-2" id="row2">
+            <div class="left-column" id="leftColumn">
+              <div class="bicycle-map" id="bicycleMap">
                 <img src="img/bicycle-pin-svgrepo-com.svg" />
               </div>
-              <div class="title-column"> 
-                <p class="title"><%= posts.city + ", " + posts.state %></p>
-                <p class="date"><%= posts.datePosted.toDateString() %></p>
+              <div class="title-column" id="titlColumn"> 
+                <p class="title" id="title"><%= posts.city + ", " + posts.state %></p>
+                <p class="date" id="date"><%= posts.datePosted.toDateString() %></p>
               </div>
             </div>
-            <div id="home-image">
-              <img src="<%= posts.image %>">
+            <div id="homeImage">
+              <img id=mainImage" src="<%= posts.image %>">
             </div>
           </div>
           <% }) %>
@@ -56,7 +55,39 @@
   allData.forEach(response => {
     response.forEach(eachImage => {
       console.log(eachImage)
-    
+      
+
+      let pageWrapper = document.createElement('pageWrapper')
+      let container = document.createElement('container').setAttribute('class', 'container')
+      let row1 = document.createElement('row1').setAttribute('class', 'row-1')
+      let logoColumn = document.createElement('logoColumn').setAttribute('class','logo-column')
+      let logo = document.createElement('logo').setAttribute('class', 'logo')
+      let row2 = document.createElement('row2').setAttribute('class', 'row-2')
+      let leftColumn = document.createElement('leftColumn').setAttribute('class', 'left-column')
+      let bicycleMap = document.createElement('bicycleMap').setAttribute('class', 'bicycle-map')
+      let titleColumn = document.createElement('titlecolumn').setAttribute('class', 'title-column')
+      let title = document.createElement('title').setAttribute('class', 'title')
+      let date = document.createElement('date').setAttribute('class', 'date')
+      let homeImage = document.createElement('homeImage')
+      let mainImage = document.createElement('mainImage')
+
+      pageWrapper.append(container)
+      container.appendChild(row1)
+      row1.appendChild('logoColumn')
+      row1.appendChild('logo')
+
+      
+      container.appendChild(row2)
+      row2.appendChild(leftColumn)
+      leftColumn.appendChild(bicycleMap)
+      leftColumn.appendChild(titleColumn)
+      titleColumn.appendChild(title)
+      titleColumn.appendChild(date)
+      row2.appendChild(homeImage)
+
+
+
+
       let city = document.createElement('city')
       city.textContent = eachImage.city
       main.appendChild(city)
