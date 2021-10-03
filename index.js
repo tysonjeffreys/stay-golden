@@ -90,7 +90,7 @@ app.use(express.urlencoded({extended:true}))
 app.use(flash());
 
 app.get('/', homeController)
-app.get('/homeData',homeDataController)
+app.get('/homeData/:page',homeDataController)
 app.get('/post/:id', getPostController)
 app.get('/upload', newPostController)
 app.post('/posts/store', storePostController)

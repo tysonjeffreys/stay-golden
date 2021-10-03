@@ -55,7 +55,7 @@ a {
         align-items:flex-start;
         justify-content: flex-start;
         margin: 10px 0px 0px 0px;
-        border-style: solid;
+        //border-style: solid;
     }
 }
 
@@ -83,7 +83,7 @@ a {
 @media only screen and (min-width: 750px) {
     
     .logo {
-        border-style: dashed;
+        //border-style: dashed;
         font-size: 1.5rem;
         color:white;
         background-color: black;
@@ -101,7 +101,7 @@ a {
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    margin: 0px 0px 20px 0px;
+    margin: 0px 0px 10px 0px;
 }
 
 @media only screen and (min-width: 750px) {
@@ -113,7 +113,7 @@ a {
         justify-content: center;
         width:100%;
         align-items:stretch;
-        margin: 10px 0px 0px 0px;
+        margin: 0px 0px 0px 0px;
         border-style: solid;
         
     }
@@ -125,6 +125,7 @@ a {
     flex-wrap: nowrap;
     margin: 2px 0 0 0;
     order:2;
+    //border-style: dashed;
 }
 
 .bicycle-map > img {
@@ -137,7 +138,7 @@ a {
     .left-column {
         display: flex;
         flex: 0 0 200px;
-        border-style:dashed;
+        //border-style:dashed;
         order:1;
     }
 }
@@ -158,11 +159,12 @@ a {
     justify-content: flex-start;
     text-align: left;
     margin: 17px 12px 0px 5px;
-    border-style: solid;
+    //border-style: solid;
     align-self: flex-start;
+    color:black;
 }
         
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 750px) {
     
     .title-column {
         align-items: flex-end;
@@ -172,10 +174,12 @@ a {
         height: 33%;
         margin: 0px 0px 0px 0px;
         align-self: flex-end;
+        //border-style: solid;
+        color: black;
     }
 }
 
-#homeImage {
+.home-image {
     align-items: flex-start;
     justify-content: flex-start;
     margin: 0px 0px 0px 0px;
@@ -183,23 +187,24 @@ a {
 }
 
 
-@media only screen and (min-width: 768px) {
-    #homeImage {
+@media only screen and (min-width: 750px) {
+    .home-image {
         margin: 0px 0px 0px 20px;
         order:2;
-        width:100%
+        width:100%;
+        
         
     }
 }
 
-#homeImage > img {
+.home-image > img {
     width:100%;
     margin: 10px 0px 0px 0px;
     
 }
 
-    @media only screen and (min-width: 768px) {
-#homeImage > img {
+    @media only screen and (min-width: 750px) {
+.home-image > img {
     max-width:600px;
     margin: 0px 0px 0px 0px;
     
@@ -209,6 +214,7 @@ a {
 .title {
     font-weight: 200;
     font-size: 1.2rem;
+    //border-style: dashed;
 }
 
 .date  {

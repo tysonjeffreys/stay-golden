@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('layouts/header'); -%>
+
+<body>
+
+<a class="nav-link" href="/upload">New Post</a>
+<main>
+  <div id="pageWrapper">
+    <div id="container" class="container">
+          <div class="row-1" id="row1">
+            <div class="logo-column" id="logoColumn"></div>
+            <div class="logo" id="logo">STAY GOLDEN</div>
+          </div>
+          <% blogposts.reverse().forEach(posts =>  { %> 
+          <div class="row-2" id="row2">
+            <div class="left-column" id="leftColumn">
+              <div class="bicycle-map" id="bicycleMap">
+                <img src="img/bicycle-pin-svgrepo-com.svg" />
+              </div>
+              <div class="title-column" id="titleColumn"> 
+                <p class="title" id="title"><%= posts.city + ", " + posts.state %></p>
+                <p class="date" id="date"><%= posts.datePosted.toDateString() %></p>
+              </div>
+            </div>
+            <div id="homeImage">
+              <img id=mainImage" src="<%= posts.image %>">
+            </div>
+          </div>
+          <% }) %>
+    </div>
+ 
+  </div>
+</main>
+  
+
+</body>
+
+<script>
+  //console.log('<%= JSON.stringify(blogposts) %>');
+  let main = document.querySelector("main")
+
+  fetch('/homeData')
+  .then(function(response) {
+    return response.json()
+})
+.then(function(imageposts) {
+  
+  
+  console.log(imageposts)
+  let allData = imageposts.map(ele => ele.totalData.map(imageArray => imageArray))
+  console.log(allData[0])
+  
+  allData.forEach(response => {
+    response.forEach(eachImage => {
+      console.log(eachImage)
+      
+
+      let pageWrapper = document.createElement('pageWrapper')
+      let container = document.createElement('container')
+      container.setAttribute('class', 'container')
+      let row1 = document.createElement('row1')
+      row1.setAttribute('class', 'row-1')
+      let logoColumn = document.createElement('logoColumn')
+      logoColumn.setAttribute('class','logo-column')
+      let logo = document.createElement('logo')
+      logo.setAttribute('class', 'logo')
+      let row2 = document.createElement('row2')
+      row2.setAttribute('class', 'row-2')
+      let leftColumn = document.createElement('leftColumn')
+      leftColumn.setAttribute('class', 'left-column')
+      let bicycleMap = document.createElement('bicycleMap')
+      bicycleMap.setAttribute('class', 'bicycle-map')
+      let titleColumn = document.createElement('titlecolumn')
+      titleColumn.setAttribute('class', 'title-column')
+      let title = document.createElement('title')
+      title.setAttribute('class', 'title')
+      let date = document.createElement('date')
+      date.setAttribute('class', 'date')
+      let homeImage = document.createElement('homeImage')
+      let mainImage = document.createElement('mainImage')
+
+      pageWrapper.append(container)
+      container.append(row1)
+      row1.append('logoColumn')
+      row1.append('logo')
+
+      
+      container.append(row2)
+      row2.append(leftColumn)
+      leftColumn.append(bicycleMap)
+      leftColumn.append(titleColumn)
+      titleColumn.append(title)
+      titleColumn.append(date)
+      row2.append(homeImage)
+
+
+
+
+      let city = document.createElement('city')
+      city.textContent = eachImage.city
+      main.appendChild(city)
+
+    })
+
+  })
+    
+  
+  let count = imageposts[0].totalCount[0].count
+  console.log(count)
+  //console.log(data[0].totalData)
+})
+.catch(function(err) {
+  console.log('Something went wrong!', err)
+});
+
+</script>
+
+</html>

@@ -12,89 +12,146 @@
           <div class="row-1" id="row1">
             <div class="logo-column" id="logoColumn"></div>
             <div class="logo" id="logo">STAY GOLDEN</div>
-          </div>
-          <% blogposts.reverse().forEach(posts =>  { %> 
-          <div class="row-2" id="row2">
-            <div class="left-column" id="leftColumn">
-              <div class="bicycle-map" id="bicycleMap">
-                <img src="img/bicycle-pin-svgrepo-com.svg" />
-              </div>
-              <div class="title-column" id="titlColumn"> 
-                <p class="title" id="title"><%= posts.city + ", " + posts.state %></p>
-                <p class="date" id="date"><%= posts.datePosted.toDateString() %></p>
-              </div>
-            </div>
-            <div id="homeImage">
-              <img id=mainImage" src="<%= posts.image %>">
-            </div>
-          </div>
-          <% }) %>
+          </div>      
     </div>
  
   </div>
 </main>
   
+<footer>
+  <p>no more images</p>
+</footer>
 
 </body>
 
 <script>
-  //console.log('<%= JSON.stringify(blogposts) %>');
-  let main = document.querySelector("main")
 
-  fetch('/homeData')
-  .then(function(response) {
-    return response.json()
+
+let page = 0;
+document.addEventListener("DOMContentLoaded", () => {
+  let main = document.querySelector("main")
+  let options = {
+    root: null,
+    rootMargins: "2000px 0px 0px 0px",
+    threshold: 0
+  };
+  
+  const observer = new IntersectionObserver(handleIntersect, options);
+  observer.observe(document.querySelector("footer"));
+  //an initial load of some data
+  getData(page);
+})
+
+function handleIntersect(entries) {
+  if (entries[0].isIntersecting) {
+    console.warn("something is intersecting with the viewport");
+
+    getData(page);
+  }
+}
+
+function incrementPage() {
+  return page++;
+}
+
+function getData(page) {
+let main = document.querySelector("main")
+let URL = '/homeData/' + page;
+console.log('This is page number' + page)
+fetch(URL)
+.then(function(response) {
+  return response.json()
 })
 .then(function(imageposts) {
-  
-  
-  console.log(imageposts)
-  let allData = imageposts.map(ele => ele.totalData.map(imageArray => imageArray))
-  console.log(allData[0])
-  
-  allData.forEach(response => {
-    response.forEach(eachImage => {
-      console.log(eachImage)
-      
-
-      let pageWrapper = document.createElement('pageWrapper')
-      let container = document.createElement('container').setAttribute('class', 'container')
-      let row1 = document.createElement('row1').setAttribute('class', 'row-1')
-      let logoColumn = document.createElement('logoColumn').setAttribute('class','logo-column')
-      let logo = document.createElement('logo').setAttribute('class', 'logo')
-      let row2 = document.createElement('row2').setAttribute('class', 'row-2')
-      let leftColumn = document.createElement('leftColumn').setAttribute('class', 'left-column')
-      let bicycleMap = document.createElement('bicycleMap').setAttribute('class', 'bicycle-map')
-      let titleColumn = document.createElement('titlecolumn').setAttribute('class', 'title-column')
-      let title = document.createElement('title').setAttribute('class', 'title')
-      let date = document.createElement('date').setAttribute('class', 'date')
-      let homeImage = document.createElement('homeImage')
-      let mainImage = document.createElement('mainImage')
-
-      pageWrapper.append(container)
-      container.appendChild(row1)
-      row1.appendChild('logoColumn')
-      row1.appendChild('logo')
-
-      
-      container.appendChild(row2)
-      row2.appendChild(leftColumn)
-      leftColumn.appendChild(bicycleMap)
-      leftColumn.appendChild(titleColumn)
-      titleColumn.appendChild(title)
-      titleColumn.appendChild(date)
-      row2.appendChild(homeImage)
 
 
+console.log(imageposts)
+let allData = imageposts.map(ele => ele.totalData.map(imageArray => imageArray))
+console.log(allData[0])
+
+allData.forEach(response => {
+  response.forEach(eachImage => {
+    console.log(eachImage)
+    
+
+    let pageWrapper = document.createElement('pageWrapper')
+    let container = document.createElement('container')
+    container.setAttribute('class', 'container')
+    let row1 = document.createElement('row1')
+    row1.setAttribute('class', 'row-1')
+    let logoColumn = document.createElement('logoColumn')
+    logoColumn.setAttribute('class','logo-column')
+    let logo = document.createElement('logo')
+    let logoTextNode = document.createTextNode("STAY GOLDEN")
+    logo.appendChild(logoTextNode)
+    logo.setAttribute('class', 'logo')
+    let row2 = document.createElement('row2')
+    row2.setAttribute('class', 'row-2')
+    let leftColumn = document.createElement('leftColumn')
+    leftColumn.setAttribute('class', 'left-column')
+    let bicycleMap = document.createElement('bicycleMap')
+    bicycleMap.setAttribute('class', 'bicycle-map')
+    let bicycleMapImage = document.createElement('img')
+    bicycleMapImage.src = "img/bicycle-pin-svgrepo-com.svg"
+    let homeImage = document.createElement('homeImage')
+    homeImage.setAttribute('class', 'home-image')
+    
+    
+    let titleColumn = document.createElement('titleColumn')
+    titleColumn.setAttribute('class', 'title-column')
+    
+    let imageTitle = document.createElement('imageTitle')
+    
+    let titleTextNode = document.createTextNode(eachImage.city + ", " + eachImage.state)
+    imageTitle.appendChild(titleTextNode)
+    imageTitle.setAttribute('class', 'title')
+    let br = document.createElement('br')
+
+    let date = document.createElement('date')
+    date.setAttribute('class', 'date')
+    let dateTextNode = document.createTextNode(new Date(eachImage.datePosted).toDateString())
+    date.appendChild(dateTextNode)
+    
+    let mainHomeImage = document.createElement('img')
+    mainHomeImage.src = eachImage.image
+    
+    
+    
+
+    
+    //let mainImage = document.createElement('mainImage')
+
+    pageWrapper.append(container)
+    container.append(row1)
+    //row1.append(logoColumn)
+    //row1.append(logo)
+
+    
+    container.append(row2)
+    row2.append(leftColumn)
+    leftColumn.append(bicycleMap)
+    bicycleMap.append(bicycleMapImage)
+    homeImage.append(mainHomeImage)
+    leftColumn.append(titleColumn)
+    titleColumn.append(imageTitle)
+    titleColumn.append(br)
+    titleColumn.append(date)
+    row2.append(homeImage)
 
 
-      let city = document.createElement('city')
-      city.textContent = eachImage.city
-      main.appendChild(city)
 
-    })
+
+    
+    main.append(pageWrapper)
+
+
+    //let city = document.createElement('city')
+    //city.textContent = eachImage.city
+    //main.appendChild(city)
 
   })
+
+})
     
   
   let count = imageposts[0].totalCount[0].count
@@ -104,6 +161,9 @@
 .catch(function(err) {
   console.log('Something went wrong!', err)
 });
+page = incrementPage();
+console.log(page)
+}
 
 </script>
 
