@@ -55,7 +55,7 @@ a {
         align-items:flex-start;
         justify-content: flex-start;
         margin: 10px 0px 0px 0px;
-        //border-style: solid;
+        border-style: solid;
     }
 }
 
@@ -83,7 +83,7 @@ a {
 @media only screen and (min-width: 750px) {
     
     .logo {
-        //border-style: dashed;
+        border-style: dashed;
         font-size: 1.5rem;
         color:white;
         background-color: black;
@@ -125,7 +125,7 @@ a {
     flex-wrap: nowrap;
     margin: 2px 0 0 0;
     order:2;
-    //border-style: dashed;
+    border-style: dashed;
 }
 
 .bicycle-map > img {
@@ -138,7 +138,7 @@ a {
     .left-column {
         display: flex;
         flex: 0 0 200px;
-        //border-style:dashed;
+        border-style:dashed;
         order:1;
     }
 }
@@ -159,7 +159,7 @@ a {
     justify-content: flex-start;
     text-align: left;
     margin: 17px 12px 0px 5px;
-    //border-style: solid;
+    border-style: solid;
     align-self: flex-start;
     color:black;
 }
@@ -174,7 +174,7 @@ a {
         height: 33%;
         margin: 0px 0px 0px 0px;
         align-self: flex-end;
-        //border-style: solid;
+        border-style: solid;
         color: black;
     }
 }
@@ -214,7 +214,7 @@ a {
 .title {
     font-weight: 200;
     font-size: 1.2rem;
-    //border-style: dashed;
+    border-style: dashed;
 }
 
 .date  {
