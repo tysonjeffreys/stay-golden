@@ -20,7 +20,7 @@ const signs3Controller = require('./controllers/s3sign')
 //local database conneection for local development
 //mongoose.connect('mongodb://localhost/my_database', {useNewURLParser:true})
 
-mongoose.connect('mongodb+srv://tmoney:FreedomTour@cluster0.87gz6.mongodb.net/my_database', {useNewURLParser:true})
+mongoose.connect(process.env.MONGO, {useNewURLParser:true})
 /*
 let port = 4000;
 //let port = process.env.PORT;
