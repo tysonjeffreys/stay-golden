@@ -19,7 +19,7 @@
 </main>
   
 <footer>
-  <p>no more images</p>
+  
 </footer>
 
 </body>
@@ -32,13 +32,14 @@ document.addEventListener("DOMContentLoaded", () => {
   let main = document.querySelector("main")
   let options = {
     root: null,
-    rootMargins: "2000px 0px 0px 0px",
+    rootMargins: "0px",
     threshold: 0
   };
   
+  //Using IntersectionObserver to implement an infinite scroll
   const observer = new IntersectionObserver(handleIntersect, options);
   observer.observe(document.querySelector("footer"));
-  //an initial load of some data
+  //an initial load of the page
   getData(page);
 })
 
@@ -99,33 +100,21 @@ allData.forEach(response => {
     
     let titleColumn = document.createElement('titleColumn')
     titleColumn.setAttribute('class', 'title-column')
-    
     let imageTitle = document.createElement('imageTitle')
-    
     let titleTextNode = document.createTextNode(eachImage.city + ", " + eachImage.state)
     imageTitle.appendChild(titleTextNode)
     imageTitle.setAttribute('class', 'title')
     let br = document.createElement('br')
-
     let date = document.createElement('date')
     date.setAttribute('class', 'date')
     let dateTextNode = document.createTextNode(new Date(eachImage.datePosted).toDateString())
     date.appendChild(dateTextNode)
-    
     let mainHomeImage = document.createElement('img')
     mainHomeImage.src = eachImage.image
     
-    
-    
-
-    
-    //let mainImage = document.createElement('mainImage')
 
     pageWrapper.append(container)
     container.append(row1)
-    //row1.append(logoColumn)
-    //row1.append(logo)
-
     
     container.append(row2)
     row2.append(leftColumn)
@@ -138,16 +127,7 @@ allData.forEach(response => {
     titleColumn.append(date)
     row2.append(homeImage)
 
-
-
-
-    
     main.append(pageWrapper)
-
-
-    //let city = document.createElement('city')
-    //city.textContent = eachImage.city
-    //main.appendChild(city)
 
   })
 

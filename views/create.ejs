@@ -5,9 +5,6 @@
 
 <body>
 
-  
-
-  <!-- Main Content -->
   <div id="page-wrapper">
     <div class="container">
       <div class="upload-row-1">
@@ -30,8 +27,13 @@
 </div>
 
 <script type="module">
-  import exifr from '/exifr/dist/full.esm.js'
+  
+  //exifr allows for exif data to be extracted client-side. Since images are sent to S3
+  //and not Heroku server exif needed to be extracted client-side. Then exif data is sent to server
+  //and mongodb while image is sent to AWS S3
 
+  import exifr from '/exifr/dist/full.esm.js'
+  
   function $id(id) {
 		return document.getElementById(id);
 	}
@@ -43,7 +45,6 @@
       // create progress bar
       var o = $id("progress");
       var progress = o.appendChild(document.createElement("p"));
-      //progress.appendChild(document.createTextNode("upload " + file.name));
 
       // progress bar
 		  xhr.upload.addEventListener("progress", function(e) {
@@ -93,6 +94,7 @@
     xhr.send();
   }
 
+  //Function extracting exif data from image then sending exif date to Node for processing.
   async function getExifData(file){
     let exifData = await exifr.parse(file)
     const xhr = new XMLHttpRequest();
@@ -102,7 +104,7 @@
     xhr.onreadystatechange = () => {
       if(xhr.readyState === 4){
         if(xhr.status === 200){
-          getSignedRequest(file);
+          getSignedRequest(file); //If image contains exif a signed URL is requested and image proceeds to upload.
         }
       }
         else if(xhr.status === 404){
@@ -111,16 +113,14 @@
       }
     };
 
-  function initUpload(){
+  function initUpload() {
     const files = document.getElementById('file-input').files;
     const file = files[0];
     if(file == null){
       return alert('No file selected.');
     }
     
-    getExifData(file);
-    //getSignedRequest(file);
-    
+    getExifData(file); 
   }
 
   (() => {

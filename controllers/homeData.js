@@ -1,11 +1,11 @@
+//Code for retrieving data from MongoDB utilizing the aggregate method.
+
 const BlogPost = require('../models/BlogPost.js')
 
 module.exports = async (req, res) => {
     let perPage = 5
     let page = parseInt(req.params.page) || 1
-    console.log(page)
     
-
     const imageposts = await BlogPost.aggregate([
         { $facet: 
             {
@@ -22,10 +22,7 @@ module.exports = async (req, res) => {
             }
         }
     ]) 
-    console.log(imageposts[0])
     
-        
-       
-                res.send(imageposts)    
+    res.send(imageposts)    
     
-    }
+}
