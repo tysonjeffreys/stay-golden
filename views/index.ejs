@@ -27,7 +27,7 @@
 <script>
 
 
-let page = 0;
+let page = 1;
 document.addEventListener("DOMContentLoaded", () => {
   let main = document.querySelector("main")
   let options = {
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const observer = new IntersectionObserver(handleIntersect, options);
   observer.observe(document.querySelector("footer"));
   //an initial load of the page
-  getData(page);
+  //getData(page);
 })
 
 function handleIntersect(entries) {
