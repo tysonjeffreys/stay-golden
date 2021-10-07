@@ -3,7 +3,7 @@
 const BlogPost = require('../models/BlogPost.js')
 
 module.exports = async (req, res) => {
-    let perPage = 5
+    let perPage = 20
     let page = parseInt(req.params.page) || 1
     
     const imageposts = await BlogPost.aggregate([
@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
             {
             "totalData": [
                 { $match : {} },
-                { $sort : { datePosted : - 1 } },
+                { $sort : { _id : -1 } },
                 { $skip : (perPage * page) - perPage },
                 { $limit : perPage },
             ],

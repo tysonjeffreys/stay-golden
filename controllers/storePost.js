@@ -44,14 +44,16 @@ module.exports = (req,res) => {
             provider: 'openstreetmap'
         };
         let geoCoder = NodeGeocoder(options);
-                            // Reverse Geocode
         geoDBwrite(function(response){
             
             let state = states.getStateCodeByStateName(response[0].state);
             //If the image location is not in an actual city the county is used instead.
+            console.log('This is the response City: ' + response[0].city)
             if (response[0].city == undefined) {
                 let addressArray = response[0].formattedAddress.split(",")
                 let city = addressArray.filter(s => s.includes('County')); 
+                console.log('This is the fileName' + fileName)
+                console.log(city)
                 BlogPost.create({
                     ...req.body,
                     image: `https://${S3_BUCKET}.s3.amazonaws.com/800w-${fileName}`,
@@ -62,22 +64,25 @@ module.exports = (req,res) => {
                     datePosted: new Date(year,month-1,day)
 
                 })
-            } else city = response[0].city
-            BlogPost.create({
-                ...req.body,
-                image: `https://${S3_BUCKET}.s3.amazonaws.com/800w-${fileName}`,
-                //userid: req.session.userId,
-                city: city,
-                state: state,
-                latitude: latDD,
-                longitude: lonDD,
-                datePosted: new Date(year,month-1,day)
+            } else { 
+                city = response[0].city
+                BlogPost.create({
+                    ...req.body,
+                    image: `https://${S3_BUCKET}.s3.amazonaws.com/800w-${fileName}`,
+                    //userid: req.session.userId,
+                    city: city,
+                    state: state,
+                    latitude: latDD,
+                    longitude: lonDD,
+                    datePosted: new Date(year,month-1,day)
 
-            })
+                })
+        }
         })
         function geoDBwrite(callback) {
             geoCoder.reverse({lat:latDD, lon:lonDD})
             .then((res)=> {
+                console.log(res)
                 callback(res);
             })
             .catch((err)=> {
