@@ -42,6 +42,7 @@
     "mongoose-unique-validator": "^2.0.3",
     "node-geocoder": "^3.27.0",
     "save": "^2.4.0",
+    "set-value": "^4.1.0",
     "us-state-codes": "^1.1.2"
   },
   "devDependencies": {
