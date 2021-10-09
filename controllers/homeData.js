@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
             {
             "totalData": [
                 { $match : {} },
-                { $sort : { _id : -1 } },
+                { $sort : { datePosted : -1 } },
                 { $skip : (perPage * page) - perPage },
                 { $limit : perPage },
             ],
