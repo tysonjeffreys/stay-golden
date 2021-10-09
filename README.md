@@ -13,6 +13,7 @@ staygolden.bike is a full stack personal project I created to document my bike t
 - node : 12.16.3
 - express : 4.17.1
 - mongoose : 5.12.2
+- MongoDB Atlas
 - aws-sdk : 2.970.0
 - ejs : 3.1.6
 - exifr : 7.1.3,
