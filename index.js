@@ -41,6 +41,7 @@ app.use(express.urlencoded({extended:true}))
 app.use(flash());
 
 app.get('/', homeController)
+app.get('/linkedin', homeController)
 app.get('/homeData/:page',homeDataController)
 app.get('/upload', newPostController)
 app.post('/posts/store', storePostController)
