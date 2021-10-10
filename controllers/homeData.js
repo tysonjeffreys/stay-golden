@@ -3,7 +3,7 @@
 const BlogPost = require('../models/BlogPost.js')
 
 module.exports = async (req, res) => {
-    let perPage = 20
+    let perPage = 5
     let page = parseInt(req.params.page) || 1
     
     const imageposts = await BlogPost.aggregate([
